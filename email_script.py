@@ -21,7 +21,7 @@ def send_mass_email():
                 msg['To'] = row['Email']
 
 
-                msg.set_content(info.get_msg({row['Company']}))
+                msg.set_content(info.get_msg({row['Company']}, {row['Point of Contact']}))
 
                 try:
                     smtp.send_message(msg)

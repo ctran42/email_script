@@ -16,5 +16,5 @@ def get_email_password():
 def get_spreadsheet_csv():
     return spreadsheet_csv
 
-def get_msg(company):
+def get_msg(company, rep_name):
     return ''
