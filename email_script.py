@@ -14,13 +14,14 @@ def send_mass_email():
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
 
         for index, row in contacts.iterrows():
-            if row['Sponsor Stage'] == 'Prospect':
+            if row['Sponsor Stage'] == 'Prospect' and pd.notna(row['Point of Contact']):
                 msg = EmailMessage()
                 msg['Subject'] = info.get_subject_line()
                 your_name = info.get_name()
                 msg['From'] = f"{your_name} <{EMAIL_ADDRESS}>"
                 msg['To'] = row['Email']
-
+                cc_addresses = ", ".join(info.get_cc_list())
+                msg['Cc'] = cc_addresses
 
                 msg.set_content(info.get_msg(row['Company'], row['Point of Contact']))
 

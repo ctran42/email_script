@@ -8,6 +8,8 @@ name = 'Bob Jones'
 position = 'Example Chair'
 phone_number = '123-456-7890'
 
+cc_list = []
+
 def get_email():
     return email
 
@@ -22,6 +24,9 @@ def get_spreadsheet_csv():
 
 def get_name():
     return name
+
+def get_cc_list():
+    return cc_list
 
 def get_msg(company, rep_name):
     return ''
