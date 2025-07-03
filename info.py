@@ -20,5 +20,8 @@ def get_subject_line():
 def get_spreadsheet_csv():
     return spreadsheet_csv
 
+def get_name():
+    return name
+
 def get_msg(company, rep_name):
     return ''

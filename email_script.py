@@ -17,7 +17,8 @@ def send_mass_email():
             if row['Sponsor Stage'] == 'Prospect':
                 msg = EmailMessage()
                 msg['Subject'] = info.get_subject_line()
-                msg['From'] = EMAIL_ADDRESS
+                your_name = info.get_name()
+                msg['From'] = f"{your_name} <{EMAIL_ADDRESS}>"
                 msg['To'] = row['Email']
 
 
