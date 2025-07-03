@@ -1,26 +1,33 @@
 import smtplib
 import pandas as pd
+import info
 from email.message import EmailMessage
 
-EMAIL_ADDRESS = 'example@gmail.com'
-EMAIL_PASSWORD = 'lol'
+EMAIL_ADDRESS = info.get_email()
+EMAIL_PASSWORD = info.get_email_password()
 
 def send_mass_email():
-    contacts = pd.read_csv('contacts.csv')
+    contacts = pd.read_csv(info.get_spreadsheet_csv())
+    print("Checkpoint 2")
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
 
         for index, row in contacts.iterrows():
-            msg = EmailMessage()
-            msg['Subject'] = 'Subject'
-            msg['From'] = EMAIL_ADDRESS
-            msg['To'] = row['email']
-            msg.set_content(f"Hi {row['name']}, \n\nThis is a test email.\n\nThanks,\nName")
+            if row['Sponsor Stage'] == 'Prospect':
+                msg = EmailMessage()
+                msg['Subject'] = 'Invitation to Partner with SASE SCRC 2026'
+                msg['From'] = EMAIL_ADDRESS
+                msg['To'] = row['Email']
 
 
-            try:
-                smtp.send_message(msg)
-                print(f"Email sent to {row['email']}")
-            except Exception as e:
-                print(f"Failed to send to {row['email']}: {e}")
+                msg.set_content(info.get_msg())
+
+                try:
+                    smtp.send_message(msg)
+                    print(f"Email sent to {row['Email']}")
+                except Exception as e:
+                    print(f"Failed to send to {row['Email']}: {e}")
+
+if __name__ == "__main__":
+    send_mass_email()
