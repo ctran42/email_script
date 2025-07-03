@@ -1,5 +1,6 @@
 email = 'email@example.com'
 email_password = ''
+subject_line = ''
 
 spreadsheet_csv = 'example.csv'
 
@@ -12,6 +13,9 @@ def get_email():
 
 def get_email_password():
     return email_password
+
+def get_subject_line():
+    return subject_line
 
 def get_spreadsheet_csv():
     return spreadsheet_csv

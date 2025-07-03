@@ -8,7 +8,7 @@ EMAIL_PASSWORD = info.get_email_password()
 
 def send_mass_email():
     contacts = pd.read_csv(info.get_spreadsheet_csv())
-    print("Checkpoint 2")
+    # print("Checkpoint 2")
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
@@ -16,7 +16,7 @@ def send_mass_email():
         for index, row in contacts.iterrows():
             if row['Sponsor Stage'] == 'Prospect':
                 msg = EmailMessage()
-                msg['Subject'] = 'Invitation to Partner with SASE SCRC 2026'
+                msg['Subject'] = info.get_subject_line()
                 msg['From'] = EMAIL_ADDRESS
                 msg['To'] = row['Email']
 
